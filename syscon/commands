@@ -1,0 +1,3 @@
+sed -i '33s/#//g' logindcp
+
+awk '/HandleLidSwitch=ignore {print NR}' logindcp
