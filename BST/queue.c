@@ -14,7 +14,7 @@ struct Queue *createq(){
     q->front = q->rear = NULL;
     return q;
 }
-void addinq(int data,struct Queue *q){
+void push(int data,struct Queue *q){
     struct LinkedList *node = malloc(sizeof(struct LinkedList));
     node->data = data;
     if(q->rear)
@@ -25,26 +25,18 @@ void addinq(int data,struct Queue *q){
         q->front = q->rear;
 }
 void displayq(struct Queue *q){
-    while(q->front != q->rear){
-        printf(" %d ->",q->front->data);
-        q->front=q->front->next;
+    struct LinkedList *temp = q->front;
+    while(temp != NULL){
+        printf(" %d ->",temp->data);
+        temp=temp->next;
     }
-    printf("%d",q->rear->data);
+    printf(" NULL");
 
 }
-void deletefront(struct Queue *q){
+void popfront(struct Queue *q){
     if(q->front == NULL){
        printf("%s", "Queue is empty");
     }
     q->front = q->front->next;
 }
 
-int main(){
-    int A[5] =  {1,2,3,4,5};
-    struct Queue *q = createq();
-    for(int i = 0; i < 3; i++){
-       addinq(A[i],q);
-    }
-    displayq(q);
-    return 0;
-}
